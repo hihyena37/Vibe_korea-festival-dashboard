@@ -1,0 +1,11 @@
+.favorites-page__eyebrow {
+  margin-bottom: var(--space-1);
+  color: var(--color-main);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.favorites-page__empty {
+  padding-top: var(--space-2);
+}

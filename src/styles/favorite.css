@@ -1,0 +1,112 @@
+.favorite-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-sub);
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.favorite-button:hover {
+  color: var(--color-danger);
+}
+
+.favorite-button.is-saved {
+  color: #d9364c;
+}
+
+/* 아이콘(svg)이 아닌 버튼 자체가 클릭/탭 대상이 되도록 */
+.favorite-button__icon {
+  pointer-events: none;
+  display: block;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+/* 저장 시 하트가 살짝 커졌다 돌아옴 */
+.favorite-button.is-popping .favorite-button__icon {
+  animation: favorite-pop 0.28s ease-out;
+}
+
+@keyframes favorite-pop {
+  50% {
+    transform: scale(1.25);
+  }
+}
+
+/* 카드 위 원형 버튼: 카드 전체 링크(가상요소)보다 위에 놓는다 */
+.favorite-button--icon {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-color: transparent;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 1px 3px rgba(21, 24, 29, 0.12);
+}
+
+/* 상세 페이지 텍스트 버튼 */
+.favorite-button--labeled {
+  height: 42px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+}
+
+.favorite-button--labeled.is-saved {
+  border-color: #f2c4cb;
+  background: #fdf1f3;
+}
+
+/* 하단 toast */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: var(--space-6);
+  z-index: 50;
+  max-width: calc(100% - 32px);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-sm);
+  background: var(--color-text);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(21, 24, 29, 0.16);
+  transform: translateX(-50%);
+  animation: toast-in 0.2s ease-out;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 8px);
+  }
+}
+
+@media (max-width: 767px) {
+  .toast {
+    bottom: var(--space-5);
+    width: max-content;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .favorite-button {
+    transition: none;
+  }
+
+  .favorite-button.is-popping .favorite-button__icon,
+  .toast {
+    animation: none;
+  }
+}

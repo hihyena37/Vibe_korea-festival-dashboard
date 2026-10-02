@@ -1,0 +1,441 @@
+.weather-card {
+  --weather-tint: var(--color-surface);
+  --weather-line: var(--color-border);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-5) var(--space-6);
+  border: 1px solid var(--weather-line);
+  border-radius: var(--radius-md);
+  background: var(--weather-tint);
+  overflow: hidden;
+}
+
+/* 날씨별 은은한 배경 (단색 tint + 큰 장식 아이콘) */
+.weather-card--clear {
+  --weather-tint: #fffaf0;
+  --weather-line: #f1e4c8;
+}
+
+.weather-card--cloudy,
+.weather-card--fog {
+  --weather-tint: #f5f7fa;
+  --weather-line: #dfe4eb;
+}
+
+.weather-card--rain {
+  --weather-tint: #f0f6fd;
+  --weather-line: #d5e3f4;
+}
+
+.weather-card--snow {
+  --weather-tint: #f6f9fd;
+  --weather-line: #dde7f2;
+}
+
+.weather-card--thunder {
+  --weather-tint: #f5f4f9;
+  --weather-line: #dedbea;
+}
+
+.weather-card__bg {
+  position: absolute;
+  top: -56px;
+  right: -48px;
+  width: 200px;
+  height: 200px;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.weather-card > :not(.weather-card__bg) {
+  position: relative;
+}
+
+.weather-card__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-1) var(--space-3);
+}
+
+.weather-card__title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.weather-card__title span {
+  margin-left: var(--space-1);
+  color: var(--color-text-sub);
+  font-weight: 600;
+}
+
+.weather-card__time {
+  color: var(--color-text-muted);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 현재 날씨 */
+.weather-now {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5) var(--space-6);
+}
+
+.weather-now__main {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.weather-now__icon {
+  width: 84px;
+  height: 84px;
+}
+
+.weather-now__temp {
+  font-size: 60px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.weather-now__temp span {
+  margin-left: 4px;
+  color: var(--color-text-muted);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0;
+  vertical-align: top;
+}
+
+.weather-now__label {
+  margin-top: var(--space-2);
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.weather-now__feels {
+  color: var(--color-text-sub);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.weather-now__details {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.weather-now__details > div {
+  min-width: 84px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--weather-line);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.weather-now__details dt {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.weather-now__details dd {
+  margin: 2px 0 0;
+  font-size: 20px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.weather-now__detail-icon {
+  font-size: 14px;
+}
+
+.weather-now__detail-icon--max {
+  color: var(--color-danger);
+}
+
+.weather-now__detail-icon--min {
+  color: var(--color-main);
+}
+
+.weather-now__detail-icon--rain {
+  color: #3b82f6;
+}
+
+/* 안내 문구 */
+.weather-advice {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text-sub);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.weather-advice__icon {
+  width: 32px;
+  height: 32px;
+}
+
+.weather-advice--good {
+  border-color: #bfe3d2;
+  background: var(--color-ongoing-weak);
+  color: #0b5e41;
+}
+
+.weather-advice--caution {
+  border-color: #f3cdb8;
+  background: #fdf0e9;
+  color: #8a2f08;
+}
+
+/* 3일 예보 */
+.weather-forecast {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.weather-forecast__day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: var(--space-3) var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  text-align: center;
+}
+
+.weather-forecast__day.is-today {
+  border-color: #c9d6f5;
+}
+
+.weather-forecast__label {
+  color: var(--color-text-sub);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.weather-forecast__day.is-today .weather-forecast__label {
+  color: var(--color-main);
+}
+
+.weather-forecast__icon {
+  width: 40px;
+  height: 40px;
+  margin: var(--space-1) 0;
+}
+
+.weather-forecast__state {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.weather-forecast__temp {
+  font-size: 18px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.weather-forecast__temp span {
+  color: var(--color-text-muted);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.weather-forecast__rain {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  color: #2f6fcf;
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 오류 */
+.weather-card__error {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-4);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-sub);
+  font-weight: 600;
+}
+
+.weather-card__retry {
+  height: 36px;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.weather-card__retry:hover {
+  border-color: var(--color-main);
+  color: var(--color-main);
+}
+
+/* 로딩 */
+.weather-card__skeleton {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.weather-card__skeleton-now {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.weather-card__skeleton-icon {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+}
+
+.weather-card__skeleton-text {
+  display: grid;
+  flex: 1;
+  gap: var(--space-2);
+}
+
+.weather-card__skeleton-temp {
+  width: 140px;
+  height: 56px;
+  border-radius: var(--radius-sm);
+}
+
+.weather-card__skeleton-day {
+  height: 136px;
+  border-radius: var(--radius-sm);
+}
+
+@media (max-width: 1024px) {
+  .weather-card {
+    padding: var(--space-5);
+  }
+}
+
+@media (max-width: 767px) {
+  .weather-card {
+    gap: var(--space-4);
+    padding: var(--space-4);
+  }
+
+  .weather-card__bg {
+    width: 150px;
+    height: 150px;
+    top: -24px;
+    right: -20px;
+  }
+
+  .weather-now__main {
+    gap: var(--space-4);
+  }
+
+  .weather-now__icon,
+  .weather-card__skeleton-icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .weather-now__temp {
+    font-size: 48px;
+  }
+
+  .weather-now__temp span {
+    font-size: 18px;
+  }
+
+  .weather-now__label {
+    font-size: 16px;
+  }
+
+  .weather-now__details {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .weather-now__details > div {
+    min-width: 0;
+    padding: var(--space-2);
+  }
+
+  .weather-now__details dd {
+    font-size: 17px;
+  }
+
+  .weather-advice {
+    padding: var(--space-3);
+    font-size: 13px;
+  }
+
+  .weather-advice__icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .weather-forecast {
+    gap: var(--space-2);
+  }
+
+  .weather-forecast__day {
+    padding: var(--space-3) var(--space-1);
+  }
+
+  .weather-forecast__icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .weather-forecast__state {
+    font-size: 13px;
+  }
+
+  .weather-forecast__temp {
+    font-size: 16px;
+  }
+
+  .weather-forecast__temp span {
+    font-size: 13px;
+  }
+
+  .weather-card__skeleton-day {
+    height: 120px;
+  }
+}
+
+@media (max-width: 380px) {
+  .weather-now__details dt {
+    font-size: 12px;
+  }
+}

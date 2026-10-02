@@ -1,0 +1,45 @@
+.weather-icon {
+  display: block;
+  flex-shrink: 0;
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.weather-icon .wi-sun {
+  fill: #f5b02e;
+  stroke: #f5b02e;
+}
+
+.weather-icon .wi-cloud {
+  fill: #ffffff;
+  stroke: #8591a2;
+}
+
+.weather-icon .wi-fog {
+  stroke: #94a0b0;
+  stroke-width: 1.8;
+}
+
+.weather-icon .wi-drop {
+  stroke: #3b82f6;
+  stroke-width: 1.8;
+}
+
+.weather-icon .wi-snow {
+  fill: #60a5fa;
+}
+
+.weather-icon .wi-bolt {
+  fill: #f59e0b;
+  stroke: #f59e0b;
+  stroke-width: 0.8;
+}
+
+.ui-icon {
+  display: block;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+}

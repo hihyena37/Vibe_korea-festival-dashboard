@@ -1,0 +1,150 @@
+.region-intro {
+  padding-bottom: var(--space-4);
+}
+
+.region-intro__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: var(--space-2);
+  padding: 3px var(--space-2) 3px 6px;
+  border-radius: var(--radius-sm);
+  background: var(--color-main-weak);
+  color: var(--color-main);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.region-intro__eyebrow .ui-icon {
+  font-size: 14px;
+}
+
+/* 지역 선택 (지도 구현 전 지역 이동 수단) */
+.region-nav {
+  margin-bottom: var(--space-5);
+}
+
+.region-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.region-nav__link {
+  display: block;
+  padding: 6px var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text-sub);
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.region-nav__link:hover {
+  border-color: #c9ced6;
+  color: var(--color-text);
+}
+
+.region-nav__link.is-active {
+  border-color: var(--color-main);
+  background: var(--color-main-weak);
+  color: var(--color-main);
+}
+
+/* 날씨 + 통계 */
+.region-dashboard {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+  margin-bottom: var(--space-7);
+}
+
+.region-stats {
+  display: grid;
+  gap: var(--space-3);
+}
+
+/* 지역 통계 숫자 강조 (HOME 통계 카드에는 영향 없음) */
+.region-stats .stats-card {
+  padding: var(--space-4) var(--space-5);
+}
+
+.region-stats .stats-card__value {
+  margin-top: var(--space-2);
+  font-size: 40px;
+  letter-spacing: -0.02em;
+}
+
+.region-stats .stats-card__unit {
+  font-size: 16px;
+}
+
+.region-stats__skeleton {
+  height: 108px;
+  border-radius: var(--radius-md);
+}
+
+.region-stats__error {
+  padding: var(--space-5);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text-sub);
+  font-size: 14px;
+}
+
+@media (max-width: 1024px) {
+  .region-dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .region-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .region-stats__error {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 767px) {
+  .region-dashboard {
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .region-stats {
+    gap: var(--space-2);
+  }
+
+  .region-stats__skeleton {
+    height: 72px;
+  }
+
+  .region-stats .stats-card {
+    padding: var(--space-3);
+  }
+
+  .region-stats .stats-card__value {
+    font-size: 28px;
+  }
+
+  .region-stats .stats-card__unit {
+    font-size: 14px;
+  }
+
+  /* 모바일: 지역 버튼을 한 줄 가로 스크롤로 (페이지 전체는 넘치지 않음) */
+  .region-nav__list {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .region-nav__list::-webkit-scrollbar {
+    display: none;
+  }
+}

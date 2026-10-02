@@ -1,0 +1,392 @@
+.festival-map {
+  margin-bottom: var(--space-7);
+}
+
+.festival-map__hint {
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.festival-map__hint--touch {
+  display: none;
+}
+
+@media (hover: none) {
+  .festival-map__hint--pointer {
+    display: none;
+  }
+
+  .festival-map__hint--touch {
+    display: inline;
+  }
+}
+
+.festival-map__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.festival-map__map {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.festival-map__map .korea-map {
+  max-width: 600px;
+}
+
+/* legend */
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2) var(--space-4);
+  width: 100%;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.map-legend__title {
+  color: var(--color-text-sub);
+  font-size: 13px;
+}
+
+.map-legend__title strong {
+  margin-left: var(--space-1);
+  color: var(--color-text);
+}
+
+.map-legend__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+}
+
+.map-legend__list li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-sub);
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.map-legend__swatch {
+  width: 16px;
+  height: 12px;
+  border: 1px solid rgba(21, 24, 29, 0.12);
+  border-radius: 3px;
+}
+
+.map-legend__swatch--level-0 {
+  background: var(--map-level-0);
+}
+
+.map-legend__swatch--level-1 {
+  background: var(--map-level-1);
+}
+
+.map-legend__swatch--level-2 {
+  background: var(--map-level-2);
+}
+
+.map-legend__swatch--level-3 {
+  background: var(--map-level-3);
+}
+
+.map-legend__swatch--level-4 {
+  background: var(--map-level-4);
+}
+
+/* 지역 정보 패널 */
+.map-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.map-panel__eyebrow {
+  color: var(--color-main);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.map-panel__title {
+  margin-top: calc(var(--space-4) * -1 + 2px);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.map-panel__stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.map-panel__stat {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-text-muted);
+  border-radius: var(--radius-sm);
+}
+
+.map-panel__stat--ongoing {
+  border-left-color: var(--color-ongoing);
+}
+
+.map-panel__stat dt {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-sub);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.map-panel__stat--ongoing dt .ui-icon {
+  color: var(--color-ongoing);
+}
+
+.map-panel__stat dd {
+  margin: var(--space-1) 0 0;
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.map-panel__stat dd span {
+  margin-left: 2px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.map-panel__weather {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+}
+
+.map-panel__weather-title {
+  margin-bottom: var(--space-1);
+  color: var(--color-text-sub);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.map-panel__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  background: var(--color-main);
+  color: #fff;
+  font-weight: 700;
+}
+
+.map-panel__link:hover {
+  filter: brightness(0.95);
+}
+
+/* 패널 기본 상태 */
+.map-panel__empty-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.map-panel__empty-title .ui-icon {
+  color: var(--color-main);
+  font-size: 18px;
+}
+
+.map-panel__empty-desc {
+  margin-top: calc(var(--space-3) * -1);
+  color: var(--color-text-sub);
+  font-size: 14px;
+}
+
+.map-panel__rank-title {
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-sub);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.map-panel__rank {
+  display: grid;
+  gap: 2px;
+  margin: calc(var(--space-2) * -1) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.map-panel__rank-link {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+}
+
+.map-panel__rank-link:hover {
+  background: var(--color-bg);
+}
+
+.map-panel__rank-no {
+  color: var(--color-main);
+  font-weight: 800;
+  text-align: center;
+}
+
+.map-panel__rank-name {
+  font-weight: 600;
+}
+
+.map-panel__rank-count {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* tooltip 내용 */
+.map-tooltip__title {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.map-tooltip__stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin: var(--space-2) 0;
+}
+
+.map-tooltip__stats dt {
+  color: var(--color-text-muted);
+  font-size: 12px;
+}
+
+.map-tooltip__stats dd {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 날씨 한 줄 요약 */
+.region-weather {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 13px;
+}
+
+.region-weather--muted {
+  color: var(--color-text-muted);
+}
+
+.region-weather__icon {
+  width: 24px;
+  height: 24px;
+}
+
+.region-weather__text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--space-2);
+}
+
+.region-weather__text strong {
+  font-variant-numeric: tabular-nums;
+}
+
+.region-weather__text span {
+  color: var(--color-text-sub);
+}
+
+.region-weather--large .region-weather__icon {
+  width: 40px;
+  height: 40px;
+}
+
+.region-weather--large .region-weather__text strong {
+  font-size: 22px;
+}
+
+.region-weather--large .region-weather__text span {
+  font-size: 14px;
+}
+
+@media (max-width: 1024px) {
+  /* Tablet 이하: 지도 → 지역 정보 세로 배치 */
+  .festival-map__body {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .festival-map {
+    margin-bottom: var(--space-6);
+  }
+
+  .festival-map .section-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-1);
+  }
+
+  .festival-map__map {
+    padding: var(--space-3);
+  }
+
+  .map-legend__title {
+    width: 100%;
+    text-align: center;
+  }
+
+  .map-legend__list {
+    justify-content: center;
+    gap: var(--space-1) var(--space-2);
+  }
+
+  .map-panel {
+    padding: var(--space-4);
+  }
+
+  .map-panel__title {
+    font-size: 20px;
+  }
+
+  .map-panel__stat {
+    padding: var(--space-3);
+  }
+
+  .map-panel__stat dd {
+    font-size: 26px;
+  }
+}

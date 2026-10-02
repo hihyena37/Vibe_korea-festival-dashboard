@@ -1,0 +1,103 @@
+.stats-card {
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-text-muted);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.stats-card--ongoing {
+  border-left-color: var(--color-ongoing);
+}
+
+.stats-card--upcoming {
+  border-left-color: var(--color-main);
+}
+
+.stats-card__label {
+  color: var(--color-text-sub);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.stats-card__value {
+  margin-top: var(--space-1);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+.stats-card__unit {
+  margin-left: 2px;
+  color: var(--color-text-muted);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.stats-card__desc {
+  margin-top: var(--space-1);
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+@media (max-width: 767px) {
+  .stats-card {
+    padding: var(--space-3);
+    border-left-width: 3px;
+  }
+
+  .stats-card__label {
+    font-size: 13px;
+  }
+
+  .stats-card__value {
+    font-size: 24px;
+  }
+
+  .stats-card__desc {
+    display: none;
+  }
+}
+
+/* 아이콘이 있는 경우 (REGION 통계) */
+.stats-card__label:has(.stats-card__icon) {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.stats-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  background: var(--color-ended-weak);
+  color: var(--color-text-sub);
+  font-size: 16px;
+}
+
+.stats-card--ongoing .stats-card__icon {
+  background: var(--color-ongoing-weak);
+  color: var(--color-ongoing);
+}
+
+.stats-card--upcoming .stats-card__icon {
+  background: var(--color-main-weak);
+  color: var(--color-main);
+}
+
+@media (max-width: 767px) {
+  .stats-card__label:has(.stats-card__icon) {
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-2);
+  }
+
+  .stats-card__icon {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+  }
+}

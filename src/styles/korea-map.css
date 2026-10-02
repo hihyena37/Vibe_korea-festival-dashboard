@@ -1,0 +1,169 @@
+.korea-map,
+.map-legend {
+  --map-level-0: #eceff3;
+  --map-level-1: #d6e1ff;
+  --map-level-2: #a9c0ff;
+  --map-level-3: #6f94fa;
+  --map-level-4: #2f5fe4;
+}
+
+.korea-map {
+  position: relative;
+  width: 100%;
+}
+
+.korea-map__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 680px;
+  overflow: visible;
+}
+
+/* 지역 */
+.korea-map__region {
+  stroke: #ffffff;
+  stroke-width: 1;
+  stroke-linejoin: round;
+  cursor: pointer;
+  outline: none;
+  transition: fill 0.15s ease, filter 0.15s ease;
+}
+
+.korea-map__region--level-0 {
+  fill: var(--map-level-0);
+}
+
+.korea-map__region--level-1 {
+  fill: var(--map-level-1);
+}
+
+.korea-map__region--level-2 {
+  fill: var(--map-level-2);
+}
+
+.korea-map__region--level-3 {
+  fill: var(--map-level-3);
+}
+
+.korea-map__region--level-4 {
+  fill: var(--map-level-4);
+}
+
+.korea-map__region:hover {
+  filter: brightness(0.94);
+}
+
+/* hover: 얇은 회색 외곽선 / selected(클릭·탭·키보드 focus): 굵은 진한 외곽선 */
+.korea-map__outline {
+  fill: none;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.korea-map__outline--hover {
+  stroke: #4b5360;
+  stroke-width: 1.5;
+}
+
+.korea-map__outline--selected {
+  stroke: var(--color-text);
+  stroke-width: 2.5;
+}
+
+/* 키보드 focus 표시 (selected 외곽선과 함께 점선으로 강조) */
+.korea-map__region:focus-visible {
+  stroke: var(--color-text);
+  stroke-width: 2.5;
+  stroke-dasharray: 4 3;
+}
+
+/* 울릉도 · 독도 inset */
+.korea-map__inset rect {
+  fill: none;
+  stroke: #c3c9d2;
+  stroke-dasharray: 3 3;
+}
+
+.korea-map__inset text {
+  fill: var(--color-text-muted);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.korea-map__inset circle {
+  fill: #8591a2;
+}
+
+/* 지역명 */
+.korea-map__labels {
+  pointer-events: none;
+}
+
+.korea-map__label {
+  fill: var(--color-text);
+  font-size: 12px;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: rgba(255, 255, 255, 0.9);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+
+.korea-map__label-count {
+  fill: var(--color-text-sub);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.korea-map__callout line {
+  stroke: #6b7280;
+  stroke-width: 0.8;
+}
+
+.korea-map__callout circle {
+  fill: var(--color-text);
+  stroke: #ffffff;
+  stroke-width: 1;
+}
+
+/* PC hover tooltip */
+.korea-map__tooltip {
+  position: absolute;
+  z-index: 2;
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  box-shadow: 0 4px 12px rgba(21, 24, 29, 0.08);
+  pointer-events: none;
+}
+
+/* 터치 기기에서는 hover tooltip을 쓰지 않는다 */
+@media (hover: none) {
+  .korea-map__tooltip {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  /* 지도가 작아지는 만큼 SVG 내부 글자 크기(사용자 단위)를 키워 실제 표시 크기를 유지 */
+  .korea-map__label {
+    font-size: 17px;
+    stroke-width: 4px;
+  }
+
+  .korea-map__label-count {
+    font-size: 15px;
+  }
+
+  .korea-map__inset text {
+    font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .korea-map__region {
+    transition: none;
+  }
+}

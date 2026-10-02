@@ -1,0 +1,261 @@
+.festival-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+.festival-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  overflow: hidden;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.festival-card:hover {
+  border-color: #c9ced6;
+  transform: translateY(-2px);
+}
+
+.festival-card__media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--color-ended-weak);
+}
+
+/* 세로로 긴 포스터도 4:3 영역을 넘지 않도록 영역 안에 고정 */
+.festival-card__media img,
+.festival-card__placeholder {
+  position: absolute;
+  inset: 0;
+}
+
+.festival-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.festival-card__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(-45deg, #eef0f3 0 12px, #e8ebef 12px 24px);
+}
+
+.festival-card__placeholder span {
+  color: #a3aab4;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.festival-card__badge {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+}
+
+.festival-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4);
+}
+
+.festival-card__title {
+  display: -webkit-box;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* 카드 전체 클릭 (FestivalCard의 onClick) */
+.festival-card {
+  cursor: pointer;
+}
+
+/* 제목 링크에 키보드 focus가 오면 카드 전체를 강조 */
+.festival-card__link:focus-visible {
+  outline: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.festival-card:has(.festival-card__link:focus-visible) {
+  outline: 2px solid var(--color-main);
+  outline-offset: 2px;
+}
+
+/* 터치 기기에서는 탭 후 hover 색이 남지 않도록 마우스 기기에서만 */
+@media (hover: hover) {
+  .festival-card:hover .festival-card__link {
+    color: var(--color-main);
+  }
+}
+
+.festival-card__location {
+  color: var(--color-text-sub);
+  font-size: 14px;
+}
+
+.festival-card__period {
+  color: var(--color-text-muted);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 3px var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+  white-space: nowrap;
+  color: #fff;
+}
+
+.status-badge--ongoing {
+  background: var(--color-ongoing);
+}
+
+.status-badge--upcoming {
+  background: var(--color-main);
+}
+
+.status-badge--ended {
+  background: var(--color-ended);
+}
+
+@media (max-width: 1200px) {
+  .festival-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .festival-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+}
+
+@media (max-width: 480px) {
+  .festival-grid {
+    gap: var(--space-3);
+  }
+
+  .festival-card__body {
+    padding: var(--space-3);
+  }
+
+  .festival-card__title {
+    font-size: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .festival-card {
+    transition: none;
+  }
+
+  .festival-card:hover {
+    transform: none;
+  }
+}
+
+/* compact variant: 가로형 카드 1열 목록 (캘린더 선택 날짜 목록) */
+.festival-grid--compact {
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-2);
+}
+
+.festival-card--compact {
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.festival-card--compact:hover {
+  transform: none;
+}
+
+.festival-card--compact .festival-card__media {
+  flex-shrink: 0;
+  width: 112px;
+  aspect-ratio: auto;
+  min-height: 92px;
+}
+
+/* 세로로 긴 포스터 이미지가 카드 높이를 늘리지 않도록 영역에 맞춰 채운다 */
+.festival-card--compact .festival-card__media img,
+.festival-card--compact .festival-card__placeholder {
+  position: absolute;
+  inset: 0;
+}
+
+.festival-card--compact .festival-card__badge {
+  top: var(--space-2);
+  left: var(--space-2);
+}
+
+.festival-card--compact .festival-card__badge .status-badge {
+  padding: 2px 6px;
+  font-size: 11px;
+}
+
+.festival-card--compact .festival-card__placeholder span {
+  font-size: 10px;
+}
+
+.festival-card--compact .festival-card__body {
+  flex: 1;
+  min-width: 0;
+  justify-content: center;
+  padding: var(--space-3) var(--space-4);
+}
+
+.festival-card--compact .festival-card__title {
+  font-size: 15px;
+}
+
+@media (max-width: 480px) {
+  .festival-grid--compact {
+    gap: var(--space-2);
+  }
+
+  .festival-card--compact .festival-card__media {
+    width: 96px;
+    min-height: 84px;
+  }
+
+  .festival-card--compact .festival-card__body {
+    padding: var(--space-3);
+  }
+
+  .festival-card--compact .festival-card__location,
+  .festival-card--compact .festival-card__period {
+    font-size: 13px;
+  }
+}
+
+/* 관심 축제 버튼 (compact 카드는 이미지 영역이 작아 조금 작게) */
+.festival-card--compact .favorite-button--icon {
+  top: 6px;
+  right: 6px;
+  width: 30px;
+  height: 30px;
+}
+
+.festival-card--compact .favorite-button__icon {
+  width: 17px;
+  height: 17px;
+}
