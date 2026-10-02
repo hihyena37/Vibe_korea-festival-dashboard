@@ -12,7 +12,11 @@ export default function Header() {
     <header className="header">
       <div className="header__inner container">
         <Link to="/" className="header__logo" aria-label="FESTIVAL NOW 홈">
-          FESTIVAL <span>NOW</span>
+          <img
+            src={`${import.meta.env.BASE_URL}logo.png`}
+            alt="FESTIVAL NOW"
+            className="header__logo-image"
+          />
         </Link>
         <nav aria-label="주요 메뉴">
           <ul className="header__nav">
